@@ -14,16 +14,43 @@ document.addEventListener("DOMContentLoaded", function() {
             event.preventDefault();
             chatContainer.appendChild(createSampleMessage());
 
-            // here we can ping the server
-            fetch("https://127.0.0.1:5000/post", {
+            // // here we can ping the server
+            // fetch("http://127.0.0.1:5000/post", {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({
+            //         'value': 'Hello World'
+            //     }),
+            // }).then(response => {
+            //     console.log(response);
+            //     if (!response.ok) {
+            //         throw new Error("Network response was not ok");
+            //     }
+            //     console.log("Sent");
+            // })
+            // .catch(error => console.error("Error:", error));
+            
+            // Here we can ping the server
+            fetch("http://127.0.0.1:5000/post", {
                 method: 'POST',
-                header: {
+                headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    'value': 'Hello World'
+                'value': 'Hello World'
                 }),
-            }).then(text => console.log("Sent"));
+            })
+            .then(response => {
+                if (response.ok) {
+                console.log("Data sent successfully.");
+                } else {
+                throw new Error("Network response was not ok. Status: " + response.status);
+                }
+            })
+            .catch(error => console.error("Error:", error.message));
+
 
             // $.post("https://127.0.0.1:5000/post", {
             //     "body": JSON.stringify({
