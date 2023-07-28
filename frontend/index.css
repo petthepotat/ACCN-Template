@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Inconsolata:wght@500&family=Indie+Flower&family=Share+Tech+Mono&family=Ubuntu&display=swap');
+
+
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    /* overflow: hidden; */
+    font-family: 'Ubuntu', sans-serif;
+}
+
+:root {
+    --color-main: #2F3139;
+    --color-main-light: #424653;
+    --color-user: #363945;
+    --color-hover: #2F323D;
+}
+
+#container {
+    background-color: var(--color-main);
+    color: white;
+    height: 100%;
+    padding-left: 10px;
+    /* padding: 20px; */
+}
+
+#channel {
+    background-color: var(--color-main-light);
+    width: 30%;
+    height: 100%;
+    position: inherit;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.user {
+    background-color: var(--color-user);
+    margin: 10px;
+    text-align: center;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-family: Ubuntu, sans-serif;
+}
+
+.user:hover {
+    background-color: var(--color-hover);
+}
+
+.user img {
+    border-radius: 50%;
+    display: inline;
+    height: 20px;
+}
+
+.user-icon {
+    display: inline-grid;
+}
+
+.user-name {
+    display: inline-grid;
+    text-align: left;
+}
+
+#view {
+    background-color: var(--color-main-light);
+    display: inline-block;
+    position: absolute;
+    width: 65%;
+    height: 100%;
+}
+
+/* chat */
+#chat {
+    background-color: var(--color-main-light);
+    display: inline-block;
+    width: 100%;
+    height: 90%;
+}
+
+#chat-container {
+    margin: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-bottom: 0px;
+    height: 100%;
+    border-radius: 10px;;
+    background-color: var(--color-user);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#chat-container::-webkit-scrollbar {
+    width: 6px;
+    background-color: var(--color-main);
+}
+
+.chat-message {
+    background-color: var(--color-main);
+    border-radius: 5px;
+    text-align: left;
+    padding: 5px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr 14fr;
+}
+
+.chat-message img {
+    border-radius: 50%;
+    display: inline-grid;
+    height: 20px;
+}
+
+.chat-content {
+    display: inline-grid;
+    margin-left: 10px;
+}
+
+/* chat input */
+
+#chat-input {
+    display: inline-block;
+    width: 100%;
+}
+
+#chat-form {
+    background-color: var(--color-main);
+    margin: 10px;
+    margin-top: 0px;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+#input {
+    background-color: var(--color-main-light);
+}
+
+
+
