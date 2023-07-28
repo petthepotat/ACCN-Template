@@ -141,8 +141,13 @@ body {
     text-align: left;
 }
 
-#input {
+#message {
     background-color: var(--color-main-light);
+    width: 100%;
+    color: white;
+    border: solid white 1px;
+    border-radius: 5px;
+    font-family: Ubuntu, monospace;
 }
 
 

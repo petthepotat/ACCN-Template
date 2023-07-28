@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="index.css">
     <!-- link a js file to the html -->
+    <script src="index.js"></script>
 </head>
 <body>
 
@@ -14,7 +15,7 @@
             <!-- Spacing  -->
             <div style="height: 10px"></div> 
             <!-- Channels -->
-            <a class="user" href="#" onclick="clickChannel()">
+            <a class="user" href="#">
                 <div class="user-icon">
                     <img src="assets/user.png">
                 </div>
@@ -22,7 +23,7 @@
                     User #1
                 </div>
             </a>
-            <a class="user" href="#" onclick="clickChannel()">
+            <a class="user" href="#">
                 <div class="user-icon">
                     <img src="assets/user.png">
                 </div>
@@ -37,17 +38,19 @@
             <div id="chat">
                 <div id="chat-container">
                     <html>
-                        <!-- messages -->
-                        <div class="chat-message">
-                            <div class="user-icon"><img src="assets/user.png"></div>
-                            <div class="chat-content">
-                                text
+                        <div id="chat-html-container">
+                            <!-- messages -->
+                            <div class="chat-message">
+                                <div class="user-icon"><img src="assets/user.png"></div>
+                                <div class="chat-content">
+                                    text
+                                </div>
                             </div>
-                        </div>
-                        <div class="chat-message">
-                            <div class="user-icon"><img src="assets/user.png"></div>
-                            <div class="chat-content">
-                                Hi Hi HI hI <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> awdawdawd
+                            <div class="chat-message">
+                                <div class="user-icon"><img src="assets/user.png"></div>
+                                <div class="chat-content">
+                                    Hello
+                                </div>
                             </div>
                         </div>
                     </html>
@@ -62,14 +65,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-
-function changeColor(){
-    // document.querySelector('.user').computedStyleMap.color = 'red';
-    console.log('hello');
-}
-
-</script>
 </body>
 </html>
