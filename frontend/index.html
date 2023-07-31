@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="index.css">
     <!-- link a js file to the html -->
     <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.1/socket.io.js" integrity="sha512-Z6C1p1NIexPj5MsVUunW4pg7uMX6/TT3CUVldmjXx2kpip1eZcrAnxIusDxyFIikyM9A61zOVNgvLr/TGudOQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -20,7 +22,7 @@
                     <img src="assets/user.png">
                 </div>
                 <div class="user-name">
-                    User #1
+                    User#1
                 </div>
             </a>
             <a class="user" href="#">
@@ -28,7 +30,7 @@
                     <img src="assets/user.png">
                 </div>
                 <div class="user-name">
-                    User #2
+                    User#2
                 </div>
             </a>
 
@@ -60,7 +62,7 @@
             <!-- type -->
             <div id="chat-input">
                 <div id="chat-form">
-                    <input type="text" id="message" name="message" id="input">
+                    <input type="text" name="message" id="chat-form-input">
                 </div>
             </div>
         </div>

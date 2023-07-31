@@ -5,5 +5,5 @@ setup(
     version="1.1",
     description="Default modules required for ACCN Web Dev 2 Curriculum",
     author="Peter Zhang",
-    install_requires=['flask']
+    install_requires=['flask', 'flask_socketio']
 )

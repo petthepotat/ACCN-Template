@@ -1,67 +1,52 @@
 
 
-
-
 // wait for page to fully load
 document.addEventListener("DOMContentLoaded", function() {
     // get all anchor elements with class "user"
     const userChannels = document.querySelectorAll(".user");
     const chatContainer = document.querySelector("#chat-html-container");
-    // console.log(chatContainer);
+    var canMessage = false;
+
+    const socket = io.connect("http://localhost:5000");
+    socket.on('connect', function() {
+        socket.send("##UserConnected##");
+    });
+    
+    socket.on('message', function(data) {        // data = 2 parts
+        // username||message
+        var _sdata = data.split("||");
+        var username = _sdata[0];
+        var message = _sdata[1];
+        chatContainer.appendChild(createMessage(username, message));
+    });
+    
+    // setup ajax enter button thing
+    $("#chat-form-input").keyup(function(event) {
+        if(event.keyCode === 13) {
+            // store value of input into variable
+            var input = $("#chat-form-input").val();
+            // clear input
+            $("#chat-form-input").val("");
+            // send data to server
+            socket.send(input);
+        }
+    });
+
+    // console.log(userChannels);
     // attach click evenst to each anchor element
     userChannels.forEach(channel => {
-        channel.addEventListener("click", function(event) {
-            event.preventDefault();
-            chatContainer.appendChild(createSampleMessage());
-
-            // // here we can ping the server
-            // fetch("http://127.0.0.1:5000/post", {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({
-            //         'value': 'Hello World'
-            //     }),
-            // }).then(response => {
-            //     console.log(response);
-            //     if (!response.ok) {
-            //         throw new Error("Network response was not ok");
-            //     }
-            //     console.log("Sent");
-            // })
-            // .catch(error => console.error("Error:", error));
-            
-            // Here we can ping the server
-            fetch("http://127.0.0.1:5000/post", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                'value': 'Hello World'
-                }),
-            })
-            .then(response => {
-                if (response.ok) {
-                console.log("Data sent successfully.");
-                } else {
-                throw new Error("Network response was not ok. Status: " + response.status);
-                }
-            })
-            .catch(error => console.error("Error:", error.message));
-
-
-            // $.post("https://127.0.0.1:5000/post", {
-            //     "body": JSON.stringify({
-            //         "value": "Hello World"
-            //     })
-            // })
-        });
+        if (channel.className == "user") {
+            channel.addEventListener("click", function(event) {
+                event.preventDefault();
+                var username = channel.getElementsByTagName("div")[1].textContent.split("\n")[1].trim();
+                // chatContainer.appendChild(createMessage(username, "this is text"));
+                socket.send("User clicked on " + username);
+            });
+        };
     });
 })
 
-function createSampleMessage(text = "Added by clicking something") {
+function createMessage(userName, text = "Added by clicking something") {
     // console.log("clicked");
     const newDiv = document.createElement("div");
     newDiv.classList.add("chat-message");
@@ -76,9 +61,14 @@ function createSampleMessage(text = "Added by clicking something") {
 
     const divText = document.createElement("div");
     divText.classList.add("chat-content");
-    divText.textContent = text;
+    divText.textContent = userName + ": " + text;
     newDiv.appendChild(divText);
 
     return newDiv;
 }
+
+function sendData(socket, data){
+    socket.send(data);
+}
+
 

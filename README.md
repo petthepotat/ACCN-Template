@@ -9,3 +9,5 @@ run the setup.py in the `server` folder
 ## How to run the Website
 
 the website is in `frontend` and is named `index.html`
+
+![Image](image.jpg)
