@@ -42,8 +42,10 @@ def handle_message(message):
 def handle_message(message):
     if message == "##UserConnected##": 
         return
-    print(f"User#1||{message}")
-    send(f"User#1||{message}", broadcast=True)
+    # split message
+    name, msg = message.split("||")
+    print(f"{name}||{msg}")
+    send(f"{name}||{msg}", broadcast=True)
 
 
 if __name__ == "__main__":

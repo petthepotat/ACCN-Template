@@ -22,12 +22,36 @@ body {
     --color-hover: #2F323D;
 }
 
+
+#username-container {
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+}
+
+#username-container h1 {
+    padding-top: 20%;
+    text-align: center;
+    font-family: 'Ubuntu', cursive;
+    font-size: 30px;
+    display: block;
+}
+
+#username-form {
+    text-align: center;
+}
+
+
 #container {
     background-color: var(--color-main);
     color: white;
     height: 100%;
     padding-left: 10px;
     /* padding: 20px; */
+    display: none;
+    /* display: block; */
 }
 
 #channel {
@@ -102,6 +126,9 @@ body {
 #chat-container::-webkit-scrollbar {
     width: 6px;
     background-color: var(--color-main);
+}
+
+#chat-html-container {
 }
 
 .chat-message {

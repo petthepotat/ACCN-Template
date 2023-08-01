@@ -1,11 +1,32 @@
 
 
+
 // wait for page to fully load
 document.addEventListener("DOMContentLoaded", function() {
     // get all anchor elements with class "user"
+    
+    // usernamem form
+    const usernameFormContainer = document.querySelector("#username-container");
+    const usernameForm = document.querySelector("#username-form");
+    
+    // discord
+    const view = document.querySelector("#container");
     const userChannels = document.querySelectorAll(".user");
     const chatContainer = document.querySelector("#chat-html-container");
+    var USERNAME = "";
     var canMessage = false;
+
+    // check if user pressed enter in username
+    $("#username-form-input").keyup(function(event) {
+        if (event.keyCode === 13) {
+            // username logged in
+            USERNAME = $("#username-form-input").val();
+            // hide username form
+            usernameFormContainer.style.display = "none";
+            // show everything else
+            view.style.display = "block";
+        }
+    });
 
     const socket = io.connect("http://localhost:5000");
     socket.on('connect', function() {
@@ -23,12 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // setup ajax enter button thing
     $("#chat-form-input").keyup(function(event) {
         if(event.keyCode === 13) {
-            // store value of input into variable
-            var input = $("#chat-form-input").val();
-            // clear input
-            $("#chat-form-input").val("");
-            // send data to server
-            socket.send(input);
+            sendMessage(socket, USERNAME);
         }
     });
 
@@ -67,8 +83,16 @@ function createMessage(userName, text = "Added by clicking something") {
     return newDiv;
 }
 
-function sendData(socket, data){
-    socket.send(data);
+
+function sendMessage(socket, username){
+    console.log(username);
+    // store value of input into variable
+    var input = username + "||" + $("#chat-form-input").val();
+    // clear input
+    $("#chat-form-input").val("");
+    // send data to server
+    socket.send(input);
 }
+
 
 
