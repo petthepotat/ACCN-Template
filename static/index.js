@@ -5,6 +5,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     // get all anchor elements with class "user"
     
+    
     // usernamem form
     const usernameFormContainer = document.querySelector("#username-container");
     const usernameForm = document.querySelector("#username-form");
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var USERNAME = "";
     var canMessage = false;
 
+    var socket;
     // check if user pressed enter in username
     $("#username-form-input").keyup(function(event) {
         if (event.keyCode === 13) {
@@ -25,28 +27,31 @@ document.addEventListener("DOMContentLoaded", function() {
             usernameFormContainer.style.display = "none";
             // show everything else
             view.style.display = "block";
+            
+
+            socket = io.connect("http://localhost:5000");
+            socket.on('connect', function() {
+                socket.send("#UC#" + USERNAME);
+            });
+            
+
+            socket.on('message', function(data) {        // data = 2 parts
+                // username||message
+                var _sdata = data.split("||");
+                var username = _sdata[0];
+                var message = _sdata[1];
+                chatContainer.appendChild(createMessage(username, text=message));
+            });
+            
+            // setup ajax enter button thing
+            $("#chat-form-input").keyup(function(event) {
+                if(event.keyCode === 13) {
+                    sendMessage(socket, USERNAME);
+                }
+            });
         }
     });
 
-    const socket = io.connect("http://localhost:5000");
-    socket.on('connect', function() {
-        socket.send("##UserConnected##");
-    });
-    
-    socket.on('message', function(data) {        // data = 2 parts
-        // username||message
-        var _sdata = data.split("||");
-        var username = _sdata[0];
-        var message = _sdata[1];
-        chatContainer.appendChild(createMessage(username, message));
-    });
-    
-    // setup ajax enter button thing
-    $("#chat-form-input").keyup(function(event) {
-        if(event.keyCode === 13) {
-            sendMessage(socket, USERNAME);
-        }
-    });
 
     // console.log(userChannels);
     // attach click evenst to each anchor element
@@ -71,7 +76,7 @@ function createMessage(userName, text = "Added by clicking something") {
     const iconDiv = document.createElement("div");
     iconDiv.classList.add("user-icon");
     const userIcon = document.createElement("img");
-    userIcon.src = "assets/user.png";
+    userIcon.src = "static/assets/user.png";
     iconDiv.appendChild(userIcon);
     newDiv.appendChild(iconDiv);
 
