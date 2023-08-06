@@ -33,6 +33,10 @@ document.addEventListener("DOMContentLoaded", function() {
             socket.on('connect', function() {
                 socket.send("#UC#" + USERNAME);
             });
+            // fetch("http://localhost:5000/login/" + USERNAME, {
+            //     method: "GET"
+            // })
+            console.log("sent username");
             
 
             socket.on('message', function(data) {        // data = 2 parts
@@ -67,8 +71,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 })
 
+
 function createMessage(userName, text = "Added by clicking something") {
-    // console.log("clicked");
+    console.log(userName + ": " + text);
+
+    // adding new item
     const newDiv = document.createElement("div");
     newDiv.classList.add("chat-message");
     
@@ -90,7 +97,7 @@ function createMessage(userName, text = "Added by clicking something") {
 
 
 function sendMessage(socket, username){
-    console.log(username);
+    // console.log(username);
     // store value of input into variable
     var input = username + "||" + $("#chat-form-input").val();
     // clear input
