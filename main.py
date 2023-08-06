@@ -11,7 +11,6 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 def home_page():
     return render_template('index.html')
 
-
 @socketio.on('connect')
 def handle_message():
     print(f"Login")
@@ -26,7 +25,6 @@ def handle_message(message):
     name, msg = message.split("||")
     print(f"{name}||{msg}")
     send(f"{name}||{msg}", broadcast=True)
-
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5000, debug=True)
