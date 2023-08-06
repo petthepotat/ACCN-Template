@@ -11,3 +11,5 @@ run the setup.py in the `server` folder
 the website is in `frontend` and is named `index.html`
 
 ![Image](image.jpg)
+
+`python setup.py install`
