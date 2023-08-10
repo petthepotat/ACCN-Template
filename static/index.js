@@ -1,10 +1,10 @@
 
-
+let IP =  "http://0.0.0.0:5000"
 
 // wait for page to fully load
 document.addEventListener("DOMContentLoaded", function() {
-    // get all anchor elements with class "user"
-    
+    // get the ip and port
+  IP = document.querySelector("#ip_address").value;
     
     // usernamem form
     const usernameFormContainer = document.querySelector("#username-container");
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
             view.style.display = "block";
             
 
-            socket = io.connect("http://localhost:5000");
+            socket = io.connect(IP);
             socket.on('connect', function() {
                 socket.send("#UC#" + USERNAME);
             });
